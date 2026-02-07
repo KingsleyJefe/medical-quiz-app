@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Question, QuizFeedback } from '@/lib/types'
 import QuestionPrompt from './question-prompt'
 import AnswerInput from './answer-input'
@@ -12,13 +13,16 @@ import { Flame } from 'lucide-react'
 
 interface QuizContainerProps {
   questions: Question[]
-  onQuestionComplete: (questionId: string, isCorrect: boolean) => void
+  onQuestionComplete: () => void
+  category?: string
 }
 
 export default function QuizContainer({
   questions,
   onQuestionComplete,
+  category = 'General',
 }: QuizContainerProps) {
+  const router = useRouter()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [feedback, setFeedback] = useState<QuizFeedback | null>(null)
   const [answered, setAnswered] = useState(false)
@@ -62,31 +66,13 @@ export default function QuizContainer({
   }
 
   if (!currentQuestion) {
-    const accuracy = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : 0
+    // Redirect to results page with stats as query parameters
+    const resultsUrl = `/results?correct=${stats.correct}&total=${stats.total}&category=${encodeURIComponent(category)}`
+    router.push(resultsUrl)
     return (
       <div className="flex h-screen items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="text-center">
-          <div className="mb-6 inline-block rounded-full bg-accent/20 p-6">
-            <div className="text-6xl font-bold text-accent">{accuracy}%</div>
-          </div>
-          <h2 className="text-3xl font-bold text-foreground">Quiz Complete!</h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            You got <span className="font-bold text-accent">{stats.correct}</span> out of <span className="font-bold">{stats.total}</span> correct
-          </p>
-          <div className="mt-8 flex justify-center gap-4">
-            <Button
-              onClick={() => window.location.reload()}
-              className="bg-primary hover:bg-primary/90"
-            >
-              Try Again
-            </Button>
-            <Button
-              onClick={() => window.history.back()}
-              variant="outline"
-            >
-              Back to Categories
-            </Button>
-          </div>
+          <p className="text-muted-foreground">Loading results...</p>
         </div>
       </div>
     )

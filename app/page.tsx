@@ -134,6 +134,7 @@ export default function Page() {
       <QuizContainer
         questions={questionsToDisplay}
         onQuestionComplete={() => {}}
+        category={selectedCategory || 'All Categories'}
       />
     </main>
   )
