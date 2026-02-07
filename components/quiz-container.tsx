@@ -37,6 +37,7 @@ export default function QuizContainer({
     setFeedback({
       is_correct: isCorrect,
       user_answer: userAnswer,
+      correct_answer: currentQuestion.accepted_answers[0],
       definition: currentQuestion.definition,
       hallmark_features: currentQuestion.hallmark_features,
       exam_pearl: currentQuestion.exam_pearl,

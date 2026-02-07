@@ -1,7 +1,5 @@
 'use client'
 
-import { Kbd } from "@/components/ui/kbd"
-
 import {
   Dialog,
   DialogContent,

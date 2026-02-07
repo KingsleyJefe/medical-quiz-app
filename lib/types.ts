@@ -44,6 +44,7 @@ export interface CategoryPerformance {
 export interface QuizFeedback {
   is_correct: boolean
   user_answer: string
+  correct_answer: string
   definition: string
   hallmark_features: string[]
   exam_pearl: string
