@@ -33,6 +33,16 @@ export default function FeedbackCard({ feedback }: FeedbackCardProps) {
       {/* Main learning card */}
       <Card className="border-2 border-muted bg-gradient-to-br from-background to-muted/30 p-4 sm:p-6">
         <div className="space-y-4">
+          {/* Answer/Disease name - prominently displayed first */}
+          <div className="rounded-lg bg-primary/10 p-4">
+            <p className="text-xs font-bold uppercase tracking-widest text-primary">
+              Answer
+            </p>
+            <p className="mt-2 text-2xl font-bold text-foreground">
+              {feedback.correct_answer}
+            </p>
+          </div>
+
           {/* Definition */}
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">
