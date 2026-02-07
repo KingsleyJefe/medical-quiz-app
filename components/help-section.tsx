@@ -1,5 +1,7 @@
 'use client'
 
+import { Kbd } from "@/components/ui/kbd"
+
 import {
   Dialog,
   DialogContent,
@@ -10,7 +12,6 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
 import { HelpCircle } from 'lucide-react'
-import { Kbd } from '@/components/ui/kbd'
 
 export default function HelpSection() {
   return (
@@ -93,13 +94,17 @@ export default function HelpSection() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">Submit answer</span>
-                <Kbd>Enter</Kbd>
+                <kbd className="rounded bg-muted px-2 py-1 font-mono text-xs font-semibold">
+                  Enter
+                </kbd>
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-muted-foreground">
                   Quick answer (text)
                 </span>
-                <Kbd>Type + Enter</Kbd>
+                <kbd className="rounded bg-muted px-2 py-1 font-mono text-xs font-semibold">
+                  Type + Enter
+                </kbd>
               </div>
             </div>
           </div>
