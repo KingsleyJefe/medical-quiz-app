@@ -68,11 +68,9 @@ export default function QuizContainer({
   }
 
   const handleNext = () => {
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1)
-      setFeedback(null)
-      setAnswered(false)
-    }
+    setCurrentIndex(currentIndex + 1)
+    setFeedback(null)
+    setAnswered(false)
   }
 
   if (!currentQuestion) {
