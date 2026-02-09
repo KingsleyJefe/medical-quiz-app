@@ -27,9 +27,19 @@ export default function QuizContainer({
   const [feedback, setFeedback] = useState<QuizFeedback | null>(null)
   const [answered, setAnswered] = useState(false)
   const [stats, setStats] = useState({ correct: 0, total: 0 })
+  const [hasNavigated, setHasNavigated] = useState(false)
 
   const currentQuestion = questions[currentIndex]
   const progress = ((currentIndex + 1) / questions.length) * 100
+
+  // Navigate to results when quiz is complete
+  useEffect(() => {
+    if (!currentQuestion && !hasNavigated && questions.length > 0) {
+      setHasNavigated(true)
+      const resultsUrl = `/results?correct=${stats.correct}&total=${stats.total}&category=${encodeURIComponent(category)}`
+      router.push(resultsUrl)
+    }
+  }, [currentQuestion, hasNavigated, stats.correct, stats.total, category, router, questions.length])
 
   const handleAnswer = (userAnswer: string) => {
     if (!currentQuestion) return
@@ -66,9 +76,6 @@ export default function QuizContainer({
   }
 
   if (!currentQuestion) {
-    // Redirect to results page with stats as query parameters
-    const resultsUrl = `/results?correct=${stats.correct}&total=${stats.total}&category=${encodeURIComponent(category)}`
-    router.push(resultsUrl)
     return (
       <div className="flex h-screen items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="text-center">
