@@ -13,6 +13,7 @@ export default function ResultsPage() {
   const correct = parseInt(searchParams.get('correct') || '0')
   const total = parseInt(searchParams.get('total') || '0')
   const category = searchParams.get('category') || 'General'
+  const incorrect = total - correct
 
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0
 
@@ -70,15 +71,15 @@ export default function ResultsPage() {
                   </p>
                 </div>
                 <div className="rounded-lg bg-background p-4 text-center">
-                  <p className="text-sm text-muted-foreground">Total</p>
-                  <p className="mt-2 text-3xl font-bold text-foreground">
-                    {total}
+                  <p className="text-sm text-muted-foreground">Incorrect</p>
+                  <p className="mt-2 text-3xl font-bold text-destructive">
+                    {incorrect}
                   </p>
                 </div>
                 <div className="rounded-lg bg-background p-4 text-center">
-                  <p className="text-sm text-muted-foreground">Score</p>
-                  <p className="mt-2 text-3xl font-bold text-primary">
-                    {correct}/{total}
+                  <p className="text-sm text-muted-foreground">Total Questions</p>
+                  <p className="mt-2 text-3xl font-bold text-foreground">
+                    {total}
                   </p>
                 </div>
               </div>
@@ -123,7 +124,7 @@ export default function ResultsPage() {
               size="lg"
             >
               <RotateCw className="mr-2 h-5 w-5" />
-              Take Another Quiz
+              Start New Session
             </Button>
             <Button
               onClick={() => router.push('/')}
@@ -132,7 +133,7 @@ export default function ResultsPage() {
               size="lg"
             >
               <Home className="mr-2 h-5 w-5" />
-              Back to Home
+              Home
             </Button>
           </div>
         </div>

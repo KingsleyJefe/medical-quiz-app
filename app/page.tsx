@@ -2,13 +2,17 @@
 
 import { useState } from 'react'
 import QuizContainer from '@/components/quiz-container'
+import SessionSetup from '@/components/session-setup'
 import QuickStart from '@/components/quick-start'
 import { SAMPLE_QUESTIONS } from '@/lib/sample-questions'
+import { shuffleArray } from '@/lib/shuffle'
+import { Question } from '@/lib/types'
 import { Button } from '@/components/ui/button'
 
 export default function Page() {
-  const [quizStarted, setQuizStarted] = useState(false)
+  const [screen, setScreen] = useState<'categories' | 'session' | 'quiz'>('categories')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [sessionQuestions, setSessionQuestions] = useState<Question[]>([])
 
   // Get unique categories
   const categories = [
@@ -20,7 +24,21 @@ export default function Page() {
     ? SAMPLE_QUESTIONS.filter((q) => q.category === selectedCategory)
     : SAMPLE_QUESTIONS
 
-  if (!quizStarted) {
+  const handleStartSession = (questionCount: number) => {
+    // Shuffle and slice the questions for this session
+    const shuffled = shuffleArray(questionsToDisplay)
+    const sessionQs = shuffled.slice(0, questionCount)
+    setSessionQuestions(sessionQs)
+    setScreen('quiz')
+  }
+
+  const handleBackToCategories = () => {
+    setSelectedCategory(null)
+    setScreen('categories')
+    setSessionQuestions([])
+  }
+
+  if (screen === 'categories') {
     return (
       <main className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
         <div className="border-b border-border">
@@ -95,12 +113,14 @@ export default function Page() {
 
             {/* Start button */}
             <Button
-              onClick={() => setQuizStarted(true)}
+              onClick={() => {
+                setScreen('session')
+              }}
               disabled={questionsToDisplay.length === 0}
               className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
               size="lg"
             >
-              Start Quiz
+              Continue
             </Button>
           </div>
 
@@ -129,13 +149,28 @@ export default function Page() {
     )
   }
 
-  return (
-    <main>
-      <QuizContainer
-        questions={questionsToDisplay}
-        onQuestionComplete={() => {}}
-        category={selectedCategory || 'All Categories'}
-      />
-    </main>
-  )
+  if (screen === 'session') {
+    return (
+      <main>
+        <SessionSetup
+          availableQuestions={questionsToDisplay.length}
+          selectedCategory={selectedCategory || 'All Categories'}
+          onStartSession={handleStartSession}
+          onBackToCategories={handleBackToCategories}
+        />
+      </main>
+    )
+  }
+
+  if (screen === 'quiz') {
+    return (
+      <main>
+        <QuizContainer
+          questions={sessionQuestions}
+          onQuestionComplete={() => {}}
+          category={selectedCategory || 'All Categories'}
+        />
+      </main>
+    )
+  }
 }

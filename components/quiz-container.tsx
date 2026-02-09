@@ -13,7 +13,7 @@ import { Flame } from 'lucide-react'
 
 interface QuizContainerProps {
   questions: Question[]
-  onQuestionComplete: () => void
+  onQuestionComplete: (questionId: string, isCorrect: boolean) => void
   category?: string
 }
 
