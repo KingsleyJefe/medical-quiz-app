@@ -4,7 +4,7 @@ import { useState } from 'react'
 import QuizContainer from '@/components/quiz-container'
 import SessionSetup from '@/components/session-setup'
 import QuickStart from '@/components/quick-start'
-import { SAMPLE_QUESTIONS } from '@/lib/sample-questions'
+import { useQuestions } from '@/lib/hooks/useQuestions'
 import { shuffleArray } from '@/lib/shuffle'
 import { Question } from '@/lib/types'
 import { Button } from '@/components/ui/button'
@@ -13,16 +13,17 @@ export default function Page() {
   const [screen, setScreen] = useState<'categories' | 'session' | 'quiz'>('categories')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>([])
+  const { questions, loading, error } = useQuestions()
 
-  // Get unique categories
+  // Get unique categories from database or sample questions
   const categories = [
-    ...new Set(SAMPLE_QUESTIONS.map((q) => q.category)),
+    ...new Set(questions.map((q) => q.category)),
   ]
 
   // Filter questions by selected category or use all
   const questionsToDisplay = selectedCategory
-    ? SAMPLE_QUESTIONS.filter((q) => q.category === selectedCategory)
-    : SAMPLE_QUESTIONS
+    ? questions.filter((q) => q.category === selectedCategory)
+    : questions
 
   const handleStartSession = (questionCount: number) => {
     // Shuffle and slice the questions for this session
@@ -36,6 +37,18 @@ export default function Page() {
     setSelectedCategory(null)
     setScreen('categories')
     setSessionQuestions([])
+  }
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
+        <div className="flex items-center justify-center pt-20">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading questions...</p>
+          </div>
+        </div>
+      </main>
+    )
   }
 
   if (screen === 'categories') {
