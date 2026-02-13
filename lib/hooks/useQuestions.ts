@@ -11,28 +11,22 @@ export function useQuestions() {
     async function fetchQuestions() {
       try {
         setLoading(true)
-        const response = await fetch('/api/questions')
+        const response = await fetch('/api/questions', {
+          cache: 'no-store'
+        })
         
-        if (!response.ok) {
-          throw new Error('Failed to fetch questions from database')
-        }
-
-        const dbQuestions = await response.json()
-
-        // If database has questions, use them. Otherwise, fall back to sample questions
-        if (dbQuestions.length > 0) {
-          setQuestions(dbQuestions)
+        if (response.ok) {
+          const data = await response.json()
+          setQuestions(Array.isArray(data) ? data : SAMPLE_QUESTIONS)
+          setError(null)
         } else {
-          console.log('No questions in database, using sample questions')
+          // If API fails, use sample questions
           setQuestions(SAMPLE_QUESTIONS)
         }
-        
-        setError(null)
       } catch (err) {
         console.error('Error fetching questions:', err)
         // Fall back to sample questions if fetch fails
         setQuestions(SAMPLE_QUESTIONS)
-        setError(err instanceof Error ? err.message : 'Unknown error')
       } finally {
         setLoading(false)
       }
