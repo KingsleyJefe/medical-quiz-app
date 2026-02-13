@@ -1,0 +1,16 @@
+{
+  "name": "medquiz-vanilla",
+  "version": "1.0.0",
+  "description": "Medical quiz application - vanilla HTML/CSS/JS version",
+  "type": "module",
+  "scripts": {
+    "dev": "npx http-server . -p 3000",
+    "start": "npx http-server . -p 8080"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "keywords": ["quiz", "medical", "education"],
+  "author": "",
+  "license": "MIT"
+}
