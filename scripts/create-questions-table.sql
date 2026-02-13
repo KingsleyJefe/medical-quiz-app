@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS public.questions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   question_id TEXT NOT NULL UNIQUE,
   question_type TEXT NOT NULL CHECK (question_type IN ('triad', 'pathognomonic', 'best_answer')),
-  prompt TEXT OR jsonb NOT NULL,
+  prompt JSONB NOT NULL,
   category TEXT NOT NULL,
   difficulty_level INTEGER NOT NULL CHECK (difficulty_level >= 1 AND difficulty_level <= 3),
   accepted_answers TEXT[] NOT NULL,
