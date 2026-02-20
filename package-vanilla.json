@@ -1,0 +1,16 @@
+{
+  "name": "medquiz-vanilla",
+  "version": "1.0.0",
+  "description": "Medical Quiz App - Vanilla HTML, CSS, and JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000 --directory .",
+    "serve": "npx http-server . -p 8000 -c-1"
+  },
+  "keywords": ["medical", "quiz", "education"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
