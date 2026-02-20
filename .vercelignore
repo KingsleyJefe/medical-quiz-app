@@ -1,0 +1,11 @@
+.git
+.github
+pnpm-lock.yaml
+yarn.lock
+README.md
+README_VANILLA.md
+DATABASE_SETUP.md
+vanilla/
+scripts/
+.env
+.env.local
