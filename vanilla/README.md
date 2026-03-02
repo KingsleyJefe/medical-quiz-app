@@ -1,4 +1,4 @@
-# MedQuiz - Vanilla HTML/CSS/JS Edition
+# Quizpital - Vanilla HTML/CSS/JS Edition
 
 A clean, production-ready medical quiz application built with vanilla HTML, CSS, and JavaScript (no frameworks, no build tools).
 

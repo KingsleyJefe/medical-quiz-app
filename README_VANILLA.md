@@ -1,6 +1,6 @@
-# MedQuiz - Vanilla HTML/CSS/JavaScript Version
+# Quizpital - Vanilla HTML/CSS/JavaScript Version
 
-This is a vanilla JavaScript version of MedQuiz - a medical pattern recognition quiz application. No frameworks, no build tools, just pure HTML, CSS, and JavaScript.
+This is a vanilla JavaScript version of Quizpital - a medical pattern recognition quiz application. No frameworks, no build tools, just pure HTML, CSS, and JavaScript.
 
 ## Files
 

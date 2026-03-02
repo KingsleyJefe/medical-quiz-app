@@ -9,7 +9,7 @@ const _geist = Geist({ subsets: ['latin'] })
 const _geistMono = Geist_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'MedQuiz - Medical Pattern Recognition Training',
+  title: 'Quizpital - Medical Pattern Recognition Training',
   description: 'Learn to recognize diseases through triads, pathognomonic signs, and clinical clues. Fast, minimal, exam-oriented medical education.',
   generator: 'v0.app',
 }

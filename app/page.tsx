@@ -44,7 +44,7 @@ export default function Page() {
         <div className="border-b border-border">
           <div className="mx-auto max-w-2xl px-4 py-4 sm:py-6">
             <div className="flex items-center justify-between">
-              <h1 className="text-xl font-bold text-foreground">MedQuiz</h1>
+              <h1 className="text-xl font-bold text-foreground">Quizpital</h1>
               <Button
                 asChild
                 variant="outline"
@@ -59,7 +59,7 @@ export default function Page() {
           {/* Header */}
           <div className="mb-12 space-y-4 text-center">
             <h1 className="text-4xl font-bold text-foreground sm:text-5xl">
-              MedQuiz
+              Quizpital
             </h1>
             <p className="text-lg text-muted-foreground">
               Medical pattern recognition training

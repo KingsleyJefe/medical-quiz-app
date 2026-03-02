@@ -1,6 +1,6 @@
 import { QUESTIONS } from './questions.js';
 
-class MedQuiz {
+class Quizpital {
   constructor() {
     this.questions = QUESTIONS;
     this.currentScreen = 'categories';
@@ -45,7 +45,7 @@ class MedQuiz {
       <div class="categories-screen screen active">
         <div class="header">
           <div class="header-content container">
-            <h1>MedQuiz</h1>
+            <h1>Quizpital</h1>
             <button class="btn-small btn-outline" data-action="viewProgress">View Progress</button>
           </div>
         </div>
@@ -53,7 +53,7 @@ class MedQuiz {
         <div class="categories-content">
           <div class="categories-inner">
             <div class="hero">
-              <h1>MedQuiz</h1>
+              <h1>Quizpital</h1>
               <p>Medical pattern recognition training</p>
               <p style="font-size: 0.95rem; color: var(--muted-foreground);">Learn diseases through triads, pathognomonic signs, and clinical clues</p>
             </div>
@@ -309,7 +309,7 @@ class MedQuiz {
       <div class="help-overlay" id="helpOverlay">
         <div class="help-dialog">
           <button class="help-close" data-action="closeHelp">×</button>
-          <h3>How to Use MedQuiz</h3>
+          <h3>How to Use Quizpital</h3>
 
           <div class="help-section">
             <h4>Question Types</h4>
@@ -569,5 +569,5 @@ class MedQuiz {
 
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  new MedQuiz();
+  new Quizpital();
 });
