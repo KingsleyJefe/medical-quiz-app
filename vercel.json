@@ -1,6 +1,5 @@
 {
-  "buildCommand": "npm ci && npm run build",
-  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "framework": "nextjs",
   "nodejs": "20.x"
