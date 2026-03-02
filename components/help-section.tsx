@@ -25,7 +25,7 @@ export default function HelpSection() {
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>How to Use MedQuiz</DialogTitle>
+          <DialogTitle>How to Use Quizpital</DialogTitle>
           <DialogDescription>
             Tips and keyboard shortcuts to maximize your learning
           </DialogDescription>

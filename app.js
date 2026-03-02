@@ -1,5 +1,5 @@
-// MedQuiz Application - Vanilla JavaScript
-class MedQuiz {
+// Quizpital Application - Vanilla JavaScript
+class Quizpital {
   constructor() {
     this.currentScreen = 'categories';
     this.selectedCategory = null;
@@ -20,7 +20,7 @@ class MedQuiz {
     root.innerHTML = `
       <nav class="navbar">
         <div class="navbar-content">
-          <h1>MedQuiz</h1>
+          <h1>Quizpital</h1>
           <button class="btn btn-outline" onclick="app.goHome()">Home</button>
         </div>
       </nav>
@@ -456,5 +456,5 @@ class MedQuiz {
 // Initialize app when DOM is ready
 let app;
 document.addEventListener('DOMContentLoaded', () => {
-  app = new MedQuiz();
+  app = new Quizpital();
 });
